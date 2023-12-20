@@ -38,10 +38,10 @@ pipeline {
                gradle 'installGradle'
              }
              steps {
-                 sh "gradle init"
                  parallel (
                  // run Gradle to execute compile and unit testing
                     pylint: {
+                        sh "gradle init"
                         sh 'gradle lint'
                     },
                     pycode: {
