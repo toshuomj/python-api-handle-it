@@ -17,6 +17,7 @@ pipeline {
 				sh "docker run --rm --volume \$(pwd) secfigo/bandit:latest"
 			}
 		}
+        
 		stage ("Dependency Check with Python Safety"){
 			steps{
 				catchError {
@@ -37,6 +38,7 @@ pipeline {
                gradle 'installGradle'
              }
              steps {
+                 sh "gradle init"
                  parallel (
                  // run Gradle to execute compile and unit testing
                     pylint: {
